@@ -9,8 +9,7 @@
 import UIKit
 
 class WelcomeViewController: UIViewController
-{
-    
+{    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var repeatPasswordTextField: UITextField!
