@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class WelcomeViewController: UIViewController
 {    
@@ -22,11 +23,31 @@ class WelcomeViewController: UIViewController
     // MARK: IBAction
     
     @IBAction func loginButtonTapped(_ sender: Any) {
+        
         dismissKeyboard()
+        
+        if emailTextField.text != "" && passwordTextField.text != ""{
+            loginUser()
+        } else {
+            ProgressHUD.showError("Email and Password is missing")
+        }
+        
     }
     
     @IBAction func registerButtonTapped(_ sender: Any) {
+        
         dismissKeyboard()
+        
+        if emailTextField.text != "" && passwordTextField.text != "" && repeatPasswordTextField.text != "" {
+            if (passwordTextField.text == repeatPasswordTextField.text) {
+                registerUser()
+            } else {
+                ProgressHUD.showError("Passwords do not match!")
+            }
+        } else {
+            ProgressHUD.showError("All fields are required")
+        }
+        
     }
     
     @IBAction func backgroundTapped(_ sender: Any) {
@@ -34,6 +55,27 @@ class WelcomeViewController: UIViewController
     }
     
     // MARK: HelperFunctions
+    
+    func loginUser() {
+        
+        ProgressHUD.show("Login...")
+        
+        FUser.loginUserWith(email: emailTextField.text!, password: passwordTextField.text!) { (error) in
+            
+            if error != nil {
+                ProgressHUD.showError(error?.localizedDescription)
+                return
+            }
+            
+            self.goToApp()
+            
+        }
+        
+    }
+    
+    func registerUser() {
+        print("register")
+    }
     
     func dismissKeyboard() {
         self.view.endEditing(false)
@@ -43,5 +85,17 @@ class WelcomeViewController: UIViewController
         emailTextField.text = ""
         passwordTextField.text = ""
         repeatPasswordTextField.text = ""
+    }
+    
+    // MARK: GoToApp
+    func goToApp() {
+        
+        ProgressHUD.dismiss()
+        cleanTextFields()
+        dismissKeyboard()
+        
+        // present app here
+        print("show the app")
+        
     }
 }

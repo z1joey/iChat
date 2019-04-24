@@ -60,6 +60,7 @@ class FUser {
         contacts = []
     }
     
+    
     init(_dictionary: NSDictionary) {
         
         objectId = _dictionary[kOBJECTID] as! String

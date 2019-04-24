@@ -12,6 +12,7 @@
 		6536FDBE226FABCF009DA296 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6536FDBD226FABCF009DA296 /* Constants.swift */; };
 		6536FDC0227076BA009DA296 /* CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6536FDBF227076BA009DA296 /* CollectionReference.swift */; };
 		6536FDC22270776C009DA296 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6536FDC12270776C009DA296 /* HelperFunctions.swift */; };
+		6536FDC42270D1FC009DA296 /* FinishRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6536FDC32270D1FC009DA296 /* FinishRegistrationViewController.swift */; };
 		65BB81DE226F945D00C145DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BB81DD226F945D00C145DE /* AppDelegate.swift */; };
 		65BB81E3226F945D00C145DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65BB81E1226F945D00C145DE /* Main.storyboard */; };
 		65BB81E5226F945E00C145DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65BB81E4226F945E00C145DE /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		6536FDBD226FABCF009DA296 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6536FDBF227076BA009DA296 /* CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReference.swift; sourceTree = "<group>"; };
 		6536FDC12270776C009DA296 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		6536FDC32270D1FC009DA296 /* FinishRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRegistrationViewController.swift; sourceTree = "<group>"; };
 		65BB81DA226F945D00C145DE /* iChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BB81DD226F945D00C145DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65BB81E2226F945D00C145DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +60,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6536FDC52270D227009DA296 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6536FDBD226FABCF009DA296 /* Constants.swift */,
+				6536FDBF227076BA009DA296 /* CollectionReference.swift */,
+				6536FDC12270776C009DA296 /* HelperFunctions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		6536FDC72270D252009DA296 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6536FDBB226FAB3D009DA296 /* FUser.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		65BB81D1226F945D00C145DE = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +99,8 @@
 		65BB81DC226F945D00C145DE /* iChat */ = {
 			isa = PBXGroup;
 			children = (
+				6536FDC72270D252009DA296 /* Classes */,
+				6536FDC52270D227009DA296 /* Helpers */,
 				65BB81DD226F945D00C145DE /* AppDelegate.swift */,
 				65BB81E1226F945D00C145DE /* Main.storyboard */,
 				65BB81E4226F945E00C145DE /* Assets.xcassets */,
@@ -86,10 +108,7 @@
 				65BB81E9226F945E00C145DE /* Info.plist */,
 				6536FDB9226FA9D1009DA296 /* GoogleService-Info.plist */,
 				65BB81EF226F9A9300C145DE /* WelcomeViewController.swift */,
-				6536FDBB226FAB3D009DA296 /* FUser.swift */,
-				6536FDBD226FABCF009DA296 /* Constants.swift */,
-				6536FDBF227076BA009DA296 /* CollectionReference.swift */,
-				6536FDC12270776C009DA296 /* HelperFunctions.swift */,
+				6536FDC32270D1FC009DA296 /* FinishRegistrationViewController.swift */,
 			);
 			path = iChat;
 			sourceTree = "<group>";
@@ -286,6 +305,7 @@
 				65BB81F0226F9A9300C145DE /* WelcomeViewController.swift in Sources */,
 				6536FDC0227076BA009DA296 /* CollectionReference.swift in Sources */,
 				6536FDBE226FABCF009DA296 /* Constants.swift in Sources */,
+				6536FDC42270D1FC009DA296 /* FinishRegistrationViewController.swift in Sources */,
 				6536FDC22270776C009DA296 /* HelperFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
