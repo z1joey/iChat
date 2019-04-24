@@ -99,6 +99,8 @@
 		65BB81DC226F945D00C145DE /* iChat */ = {
 			isa = PBXGroup;
 			children = (
+				65BB81EF226F9A9300C145DE /* WelcomeViewController.swift */,
+				6536FDC32270D1FC009DA296 /* FinishRegistrationViewController.swift */,
 				6536FDC72270D252009DA296 /* Classes */,
 				6536FDC52270D227009DA296 /* Helpers */,
 				65BB81DD226F945D00C145DE /* AppDelegate.swift */,
@@ -107,8 +109,6 @@
 				65BB81E6226F945E00C145DE /* LaunchScreen.storyboard */,
 				65BB81E9226F945E00C145DE /* Info.plist */,
 				6536FDB9226FA9D1009DA296 /* GoogleService-Info.plist */,
-				65BB81EF226F9A9300C145DE /* WelcomeViewController.swift */,
-				6536FDC32270D1FC009DA296 /* FinishRegistrationViewController.swift */,
 			);
 			path = iChat;
 			sourceTree = "<group>";

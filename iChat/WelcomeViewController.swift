@@ -18,6 +18,8 @@ class WelcomeViewController: UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
     }
     
     // MARK: IBAction
@@ -74,7 +76,11 @@ class WelcomeViewController: UIViewController
     }
     
     func registerUser() {
-        print("register")
+        
+        dismissKeyboard()
+        performSegue(withIdentifier: "welcomeToFinishReg", sender: self)
+        cleanTextFields()
+        
     }
     
     func dismissKeyboard() {
@@ -91,11 +97,27 @@ class WelcomeViewController: UIViewController
     func goToApp() {
         
         ProgressHUD.dismiss()
+        
         cleanTextFields()
         dismissKeyboard()
         
-        // present app here
-        print("show the app")
+        let mainVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainApplication") as! UITabBarController
+        
+        self.present(mainVC, animated: true, completion: nil)
+        
+    }
+    
+    // MARK: Navigationo
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "welcomeToFinishReg" {
+            
+            let vc = segue.destination as! FinishRegistrationViewController
+            vc.email = emailTextField.text!
+            vc.password = passwordTextField.text!
+            
+        }
         
     }
 }
+
