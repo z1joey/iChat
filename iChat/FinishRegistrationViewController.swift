@@ -75,6 +75,8 @@ class FinishRegistrationViewController: UIViewController {
         cleanTextFields()
         dismissKeyboard()
         
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: USER_DID_LOGIN_NOTIFICATION), object: nil, userInfo: [kUSERID : FUser.currentId()])
+        
         let mainVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainApplication") as! UITabBarController
         
         self.present(mainVC, animated: true, completion: nil)
