@@ -22,6 +22,7 @@
 		65FBA9582271AE9C00B21DAE /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FBA9572271AE9C00B21DAE /* UserTableViewCell.swift */; };
 		65FBA95B2271B2C000B21DAE /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FBA95A2271B2C000B21DAE /* UserTableViewController.swift */; };
 		65FBA95D2272EA5700B21DAE /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FBA95C2272EA5700B21DAE /* ChatViewController.swift */; };
+		65FBA95F22730D4900B21DAE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FBA95E22730D4900B21DAE /* ProfileTableViewController.swift */; };
 		E3D554CDFDD93A6CBA5689E2 /* Pods_iChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D786D6C0C0D570FA9B09A545 /* Pods_iChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		65FBA9572271AE9C00B21DAE /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		65FBA95A2271B2C000B21DAE /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 		65FBA95C2272EA5700B21DAE /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		65FBA95E22730D4900B21DAE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		D786D6C0C0D570FA9B09A545 /* Pods_iChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 				65FBA9552271788300B21DAE /* SettingsTableViewController.swift */,
 				65FBA95A2271B2C000B21DAE /* UserTableViewController.swift */,
 				65FBA95C2272EA5700B21DAE /* ChatViewController.swift */,
+				65FBA95E22730D4900B21DAE /* ProfileTableViewController.swift */,
 				6536FDC72270D252009DA296 /* Classes */,
 				65FBA9592271B29700B21DAE /* CustomCells */,
 				6536FDC52270D227009DA296 /* Helpers */,
@@ -326,6 +329,7 @@
 				65FBA9582271AE9C00B21DAE /* UserTableViewCell.swift in Sources */,
 				65BB81DE226F945D00C145DE /* AppDelegate.swift in Sources */,
 				65BB81F0226F9A9300C145DE /* WelcomeViewController.swift in Sources */,
+				65FBA95F22730D4900B21DAE /* ProfileTableViewController.swift in Sources */,
 				6536FDC0227076BA009DA296 /* CollectionReference.swift in Sources */,
 				65FBA9562271788300B21DAE /* SettingsTableViewController.swift in Sources */,
 				6536FDBE226FABCF009DA296 /* Constants.swift in Sources */,
