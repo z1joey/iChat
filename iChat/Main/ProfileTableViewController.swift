@@ -57,12 +57,32 @@ class ProfileTableViewController: UITableViewController {
     //MARK: IBActions
     
     @IBAction func callButtonTapped(_ sender: Any) {
+        print("call: \(user?.fullname)")
     }
     
     @IBAction func messageButtonTapped(_ sender: Any) {
+        print("chat with: \(user?.fullname)")
     }
     
     @IBAction func blockButtonTapped(_ sender: Any) {
+        
+        var currentBlockedIds = FUser.currentUser()?.blockedUsers
+        if (currentBlockedIds?.contains(user!.objectId))! {
+            let index = currentBlockedIds?.firstIndex(of: user!.objectId)
+            currentBlockedIds?.remove(at: index!)
+        } else {
+            currentBlockedIds?.append(user!.objectId)
+        }
+        
+        updateCurrentUserInFirestore(withValues: [kBLOCKEDUSERID : currentBlockedIds]) { (error) in
+            if error != nil {
+                print("error : \(error)")
+                return
+            }
+            
+            self.updateBlockStatus()
+        }
+        
     }
     
     // MARK: Setup UI
@@ -85,6 +105,22 @@ class ProfileTableViewController: UITableViewController {
     }
     
     func updateBlockStatus() {
+        
+        if user!.objectId != FUser.currentId() {
+            blockButtonOutlet.isHidden = false
+            messageButtonOutlet.isHidden = false
+            callButtonOutlet.isHidden = false
+        } else {
+            blockButtonOutlet.isHidden = true
+            messageButtonOutlet.isHidden = true
+            callButtonOutlet.isHidden = true
+        }
+        
+        if FUser.currentUser()!.blockedUsers.contains(user!.objectId) {
+            blockButtonOutlet.setTitle("Unblock User", for: .normal)
+        } else {
+            blockButtonOutlet.setTitle("Block User", for: .normal)
+        }
         
     }
 

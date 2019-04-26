@@ -79,6 +79,24 @@ class UserTableViewController: UITableViewController, UserTableViewCellDelegate 
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        var user: FUser
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            user = filteredUsers[indexPath.row]
+        } else {
+            let sectionTitle = self.sectionTitleList[indexPath.section]
+            let users = self.allUserGroupped[sectionTitle]
+            user = users![indexPath.row]
+        }
+        
+        startPrivateChat(user1: FUser.currentUser()!, user2: user)
+        
+    }
+    
     // MARK: Cell Delegate
     
     func didTapAvatarImage(indexPath: IndexPath) {
@@ -122,6 +140,49 @@ class UserTableViewController: UITableViewController, UserTableViewCellDelegate 
         return index
         
     }
+    
+    
+    
+    // MARK: IBActions
+
+    @IBAction func filterSegmentValueChanged(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            loadUsers(filter: kCITY)
+        case 1:
+            loadUsers(filter: kCOUNTRY)
+        case 2:
+            loadUsers(filter: "")
+        default:
+            return
+        }
+    }
+}
+
+
+
+// MARK: Search controller functions
+
+extension UserTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+    }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredUsers = allUsers.filter({ (user) -> Bool in
+            return user.firstname.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+    }
+    
+}
+
+// MARK: Helper functtions
+
+extension UserTableViewController {
     
     func loadUsers(filter: String) {
         
@@ -176,47 +237,6 @@ class UserTableViewController: UITableViewController, UserTableViewCellDelegate 
             ProgressHUD.dismiss()
         }
     }
-    
-    // MARK: IBActions
-
-    @IBAction func filterSegmentValueChanged(_ sender: UISegmentedControl) {
-        
-        switch sender.selectedSegmentIndex {
-        case 0:
-            loadUsers(filter: kCITY)
-        case 1:
-            loadUsers(filter: kCOUNTRY)
-        case 2:
-            loadUsers(filter: "")
-        default:
-            return
-        }
-    }
-}
-
-
-
-// MARK: Search controller functions
-
-extension UserTableViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchText: searchController.searchBar.text!)
-    }
-    
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
-        filteredUsers = allUsers.filter({ (user) -> Bool in
-            return user.firstname.lowercased().contains(searchText.lowercased())
-        })
-        
-        tableView.reloadData()
-    }
-    
-}
-
-// MARK: Helper functtions
-
-extension UserTableViewController {
     
     fileprivate func splitDataIntoSection() {
         var sectionTitle: String = ""
