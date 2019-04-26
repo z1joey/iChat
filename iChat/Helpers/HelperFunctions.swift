@@ -66,41 +66,41 @@ func imageFromData(pictureData: String, with block: (_ image: UIImage?) -> Void)
     block(image)
 }
 
-//func timeElapsed(date: Date) -> String {
-//    
-//    let seconds = NSDate().timeIntervalSince(date)
-//    
-//    var elapsed: String?
-//    
-//    
-//    if (seconds < 60) {
-//        elapsed = "Just now"
-//    } else if (seconds < 60 * 60) {
-//        let minutes = Int(seconds / 60)
-//        
-//        var minText = "min"
-//        if minutes > 1 {
-//            minText = "mins"
-//        }
-//        elapsed = "\(minutes) \(minText)"
-//        
-//    } else if (seconds < 24 * 60 * 60) {
-//        let hours = Int(seconds / (60 * 60))
-//        var hourText = "hour"
-//        if hours > 1 {
-//            hourText = "hours"
-//        }
-//        elapsed = "\(hours) \(hourText)"
-//    } else {
-//        let currentDateFormater = dateFormatter()
-//        currentDateFormater.dateFormat = "dd/MM/YYYY"
-//        
-//        elapsed = "\(currentDateFormater.string(from: date))"
-//    }
-//    
-//    return elapsed!
-//}
-//
+func timeElapsed(date: Date) -> String {
+    
+    let seconds = NSDate().timeIntervalSince(date)
+    
+    var elapsed: String?
+    
+    
+    if (seconds < 60) {
+        elapsed = "Just now"
+    } else if (seconds < 60 * 60) {
+        let minutes = Int(seconds / 60)
+        
+        var minText = "min"
+        if minutes > 1 {
+            minText = "mins"
+        }
+        elapsed = "\(minutes) \(minText)"
+        
+    } else if (seconds < 24 * 60 * 60) {
+        let hours = Int(seconds / (60 * 60))
+        var hourText = "hour"
+        if hours > 1 {
+            hourText = "hours"
+        }
+        elapsed = "\(hours) \(hourText)"
+    } else {
+        let currentDateFormater = dateFormatter()
+        currentDateFormater.dateFormat = "dd/MM/YYYY"
+        
+        elapsed = "\(currentDateFormater.string(from: date))"
+    }
+    
+    return elapsed!
+}
+
 ////for avatars
 //func dataImageFromString(pictureString: String, withBlock: (_ image: Data?) -> Void) {
 //    
@@ -109,17 +109,17 @@ func imageFromData(pictureData: String, with block: (_ image: UIImage?) -> Void)
 //    withBlock(imageData as Data?)
 //}
 //
-//
-////for calls and chats
-//func dictionaryFromSnapshots(snapshots: [DocumentSnapshot]) -> [NSDictionary] {
-//    
-//    var allMessages: [NSDictionary] = []
-//    for snapshot in snapshots {
-//        allMessages.append(snapshot.data() as! NSDictionary)
-//    }
-//    return allMessages
-//}
-//
+
+//for calls and chats
+func dictionaryFromSnapshots(snapshots: [DocumentSnapshot]) -> [NSDictionary] {
+    
+    var allMessages: [NSDictionary] = []
+    for snapshot in snapshots {
+        allMessages.append(snapshot.data() as! NSDictionary)
+    }
+    return allMessages
+}
+
 //func formatCallTime(date: Date) -> String {
 //    
 //    let seconds = NSDate().timeIntervalSince(date)

@@ -24,6 +24,7 @@
 		65FBA95D2272EA5700B21DAE /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FBA95C2272EA5700B21DAE /* ChatViewController.swift */; };
 		65FBA95F22730D4900B21DAE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FBA95E22730D4900B21DAE /* ProfileTableViewController.swift */; };
 		65FBA964227327F900B21DAE /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FBA963227327F900B21DAE /* Recent.swift */; };
+		65FBA9662273872200B21DAE /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FBA9652273872200B21DAE /* RecentTableViewCell.swift */; };
 		E3D554CDFDD93A6CBA5689E2 /* Pods_iChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D786D6C0C0D570FA9B09A545 /* Pods_iChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		65FBA95C2272EA5700B21DAE /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		65FBA95E22730D4900B21DAE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		65FBA963227327F900B21DAE /* Recent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
+		65FBA9652273872200B21DAE /* RecentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecentTableViewCell.swift; path = ../RecentTableViewCell.swift; sourceTree = "<group>"; };
 		D786D6C0C0D570FA9B09A545 /* Pods_iChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				65FBA9572271AE9C00B21DAE /* UserTableViewCell.swift */,
+				65FBA9652273872200B21DAE /* RecentTableViewCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				65FBA964227327F900B21DAE /* Recent.swift in Sources */,
 				6536FDBC226FAB3D009DA296 /* FUser.swift in Sources */,
 				65FBA95D2272EA5700B21DAE /* ChatViewController.swift in Sources */,
+				65FBA9662273872200B21DAE /* RecentTableViewCell.swift in Sources */,
 				65FBA9582271AE9C00B21DAE /* UserTableViewCell.swift in Sources */,
 				65BB81DE226F945D00C145DE /* AppDelegate.swift in Sources */,
 				65BB81F0226F9A9300C145DE /* WelcomeViewController.swift in Sources */,
