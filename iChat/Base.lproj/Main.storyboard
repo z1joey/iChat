@@ -453,7 +453,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O5R-L8-29J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5317" y="-183"/>
+            <point key="canvasLocation" x="4522" y="-183"/>
         </scene>
         <!--Profile Table View Controller-->
         <scene sceneID="KTN-ag-Qa3">
@@ -516,22 +516,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wft-gL-z7O">
-                                                    <rect key="frame" x="192" y="17.5" width="30" height="30"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <rect key="frame" x="206" y="11" width="2" height="43"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="UnU-T0-Vlr"/>
-                                                        <constraint firstAttribute="height" constant="30" id="agO-4g-AjX"/>
+                                                        <constraint firstAttribute="width" constant="2" id="UnU-T0-Vlr"/>
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dH0-y9-sB3">
-                                                    <rect key="frame" x="20" y="17.5" width="172" height="30"/>
+                                                    <rect key="frame" x="20" y="17.5" width="186" height="30"/>
                                                     <state key="normal" image="call"/>
                                                     <connections>
                                                         <action selector="callButtonTapped:" destination="p5p-Vr-onP" eventType="touchUpInside" id="BMA-wu-FKq"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTC-AZ-D5U">
-                                                    <rect key="frame" x="222" y="17.5" width="172" height="30"/>
+                                                    <rect key="frame" x="208" y="17.5" width="186" height="30"/>
                                                     <state key="normal" image="message"/>
                                                     <connections>
                                                         <action selector="messageButtonTapped:" destination="p5p-Vr-onP" eventType="touchUpInside" id="q3e-cn-ytX"/>
@@ -539,11 +538,13 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Wft-gL-z7O" firstAttribute="top" secondItem="Wp0-1D-gTS" secondAttribute="topMargin" id="7Se-qu-hXk"/>
                                                 <constraint firstItem="CTC-AZ-D5U" firstAttribute="centerY" secondItem="Wp0-1D-gTS" secondAttribute="centerY" id="B7K-vX-aDp"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="CTC-AZ-D5U" secondAttribute="trailing" id="JXN-v1-0G9"/>
                                                 <constraint firstItem="Wft-gL-z7O" firstAttribute="centerX" secondItem="Wp0-1D-gTS" secondAttribute="centerX" id="KHR-sw-gwH"/>
                                                 <constraint firstItem="CTC-AZ-D5U" firstAttribute="leading" secondItem="Wft-gL-z7O" secondAttribute="trailing" id="P9u-CZ-4cd"/>
                                                 <constraint firstItem="Wft-gL-z7O" firstAttribute="centerY" secondItem="Wp0-1D-gTS" secondAttribute="centerY" id="aEK-c3-AXI"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Wft-gL-z7O" secondAttribute="bottom" id="fg8-7v-WRG"/>
                                                 <constraint firstItem="dH0-y9-sB3" firstAttribute="centerY" secondItem="Wp0-1D-gTS" secondAttribute="centerY" id="nNH-Ct-LSS"/>
                                                 <constraint firstItem="dH0-y9-sB3" firstAttribute="leading" secondItem="Wp0-1D-gTS" secondAttribute="leadingMargin" id="qAr-tM-hQA"/>
                                                 <constraint firstItem="Wft-gL-z7O" firstAttribute="leading" secondItem="dH0-y9-sB3" secondAttribute="trailing" id="x3r-Jb-A3R"/>
@@ -599,7 +600,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="24v-DT-c6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6095.652173913044" y="-183.48214285714286"/>
+            <point key="canvasLocation" x="5303" y="-183"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qZZ-36-UPb">

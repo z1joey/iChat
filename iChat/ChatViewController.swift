@@ -18,16 +18,19 @@ class ChatViewController: UIViewController {
     
     var recentListener: ListenerRegistration!
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadRecentChats()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.tableView.tableFooterView = UIView()
-        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        loadRecentChats()
+    override func viewWillDisappear(_ animated: Bool) {
+        recentListener.remove()
     }
     
     // MARK: IBActions
