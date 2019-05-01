@@ -74,6 +74,15 @@ class ChatViewController: UIViewController {
         
     }
     
+    func showUserProfile(user: FUser) {
+        
+        let profileVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileView") as! ProfileTableViewController
+        profileVC.user = user
+        
+        self.navigationController?.pushViewController(profileVC, animated: true)
+        
+    }
+    
     // MARK: Tableview Header
     
     func setTableViewHeader() {
@@ -99,8 +108,7 @@ class ChatViewController: UIViewController {
     }
     
     @objc func groupButtonPressed() {
-        
-        
+    
         
     }
 }
@@ -108,7 +116,7 @@ class ChatViewController: UIViewController {
 
 // MARK: TableView
 
-extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
+extension ChatViewController: UITableViewDelegate, UITableViewDataSource, RecentChatsTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("RECENT CHAT COUNT: \(recentChats.count)")
@@ -118,11 +126,34 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RecentTableViewCell
+        
         let recent = recentChats[indexPath.row]
         
         cell.setupCell(recentChat: recent, indexPath: indexPath)
+        cell.delegate = self
         
         return cell
+    }
+    
+    func didTapAvatarImage(indexPath: IndexPath) {
+        
+        let recentChat = recentChats[indexPath.row]
+        if recentChat[kTYPE] as! String == kPRIVATE {
+            reference(.User).document(recentChat[kWITHUSERUSERID] as! String).getDocument { (snapshot, error) in
+                
+                guard let snapshot = snapshot else { return }
+                
+                if snapshot.exists {
+                    
+                    let userDict = snapshot.data()! as NSDictionary
+                    let tempUser = FUser(_dictionary: userDict)
+                    self.showUserProfile(user: tempUser)
+                    
+                }
+                
+            }
+        }
+        
     }
     
 }
