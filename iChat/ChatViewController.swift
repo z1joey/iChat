@@ -27,6 +27,8 @@ class ChatViewController: UIViewController {
 
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.tableView.tableFooterView = UIView()
+        
+        setTableViewHeader()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,6 +73,36 @@ class ChatViewController: UIViewController {
         })
         
     }
+    
+    // MARK: Tableview Header
+    
+    func setTableViewHeader() {
+        
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 45))
+        let buttonView = UIView(frame: CGRect(x: 0, y: 5, width: tableView.frame.width, height: 35))
+        
+        let groupButton = UIButton(frame: CGRect(x: tableView.frame.width - 110, y: 10, width: 100, height: 20))
+        groupButton.addTarget(self, action: #selector(self.groupButtonPressed), for: .touchUpInside)
+        groupButton.setTitle("New Group", for: .normal)
+        let buttonColor = #colorLiteral(red: 0, green: 0.2834656835, blue: 0.6651299596, alpha: 1)
+        groupButton.setTitleColor(buttonColor, for: .normal)
+        
+        let lineView = UIView(frame: CGRect(x: 0, y: headerView.frame.height - 1, width: tableView.frame.width, height: 1))
+        lineView.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.9372549057, blue: 0.9568627477, alpha: 1)
+        
+        buttonView.addSubview(groupButton)
+        headerView.addSubview(buttonView)
+        headerView.addSubview(lineView)
+        
+        tableView.tableHeaderView = headerView
+        
+    }
+    
+    @objc func groupButtonPressed() {
+        
+        
+        
+    }
 }
 
 
@@ -94,3 +126,5 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
+

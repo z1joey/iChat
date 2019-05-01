@@ -555,15 +555,15 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Section-3" id="gr8-Ln-5wI">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="eVt-ff-qHq">
-                                        <rect key="frame" x="0.0" y="249" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="eVt-ff-qHq">
+                                        <rect key="frame" x="0.0" y="249" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eVt-ff-qHq" id="epR-A7-7N7">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scn-zb-0PH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <state key="normal" title="Block User">
                                                         <color key="titleColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
