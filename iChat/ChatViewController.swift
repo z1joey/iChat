@@ -177,7 +177,11 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource, Recent
         }
         
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
-            print("delete \(indexPath)")
+            
+            self.recentChats.remove(at: indexPath.row)
+            deleteRecentChat(recentChatDictionary: tempDict)
+            self.tableView.reloadData()
+            
         }
         
         let muteAction = UITableViewRowAction(style: .default, title: muteTitle) { (action, indexPath) in
@@ -187,6 +191,33 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource, Recent
         muteAction.backgroundColor = #colorLiteral(red: 0, green: 0.2834656835, blue: 0.6651299596, alpha: 1)
         
         return [deleteAction, muteAction]
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        var recent: NSDictionary!
+        
+        if searchController.isActive && searchController.searchBar.text != ""{
+            recent = filteredChats[indexPath.row]
+        } else {
+            recent = recentChats[indexPath.row]
+        }
+        
+        restartRecentChat(recent: recent)
+        
+        // show chat view
+        
+        let chatingVC = ChatingViewController()
+        chatingVC.hidesBottomBarWhenPushed = true
+        chatingVC.titleName = recent[kWITHUSERFULLNAME] as? String
+        chatingVC.memberIds = recent[kMEMBERS] as? [String]
+        chatingVC.membersToPush = recent[kMEMBERSTOPUSH] as? [String]
+        chatingVC.chatRoomId = recent[kCHATROOMID] as? String
+        chatingVC.isGroup = (recent[kTYPE] as! String) == kGROUP
+        navigationController?.pushViewController(chatingVC, animated: true)
+        
     }
     
     func didTapAvatarImage(indexPath: IndexPath) {

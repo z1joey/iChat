@@ -453,7 +453,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O5R-L8-29J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4522" y="-183"/>
+            <point key="canvasLocation" x="4506" y="-183"/>
         </scene>
         <!--Profile Table View Controller-->
         <scene sceneID="KTN-ag-Qa3">
@@ -600,7 +600,22 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="24v-DT-c6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5303" y="-183"/>
+            <point key="canvasLocation" x="5287" y="-183"/>
+        </scene>
+        <!--Chating View Controller-->
+        <scene sceneID="pvZ-yY-gC7">
+            <objects>
+                <viewController id="wT3-ID-8BL" customClass="ChatingViewController" customModule="iChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rQr-Sf-zc6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="WSQ-Xz-TUm"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eef-qY-BIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6061" y="-183"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qZZ-36-UPb">
