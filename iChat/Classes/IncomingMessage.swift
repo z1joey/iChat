@@ -27,7 +27,7 @@ class IncomingMessage {
         
         switch type {
         case kTEXT:
-            createTextMessage(messageDictionary: messageDictionary, chatRoomId: chatRoomId)
+            message = createTextMessage(messageDictionary: messageDictionary, chatRoomId: chatRoomId)
         case kPICTURE:
             print("create picture message")
         case kVIDEO:
