@@ -211,10 +211,10 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource, Recent
         
         let chatingVC = ChatingViewController()
         chatingVC.hidesBottomBarWhenPushed = true
-        chatingVC.titleName = recent[kWITHUSERFULLNAME] as? String
-        chatingVC.memberIds = recent[kMEMBERS] as? [String]
-        chatingVC.membersToPush = recent[kMEMBERSTOPUSH] as? [String]
-        chatingVC.chatRoomId = recent[kCHATROOMID] as? String
+        chatingVC.titleName = (recent[kWITHUSERFULLNAME] as? String)!
+        chatingVC.memberIds = (recent[kMEMBERS] as? [String])!
+        chatingVC.membersToPush = (recent[kMEMBERSTOPUSH] as? [String])!
+        chatingVC.chatRoomId = (recent[kCHATROOMID] as? String)!
         chatingVC.isGroup = (recent[kTYPE] as! String) == kGROUP
         navigationController?.pushViewController(chatingVC, animated: true)
         

@@ -25,6 +25,15 @@ class ChatingViewController: JSQMessagesViewController {
     var group: NSDictionary?
     var withUsers: [FUser] = []
     
+    let legitTypes = [kAUDIO, kVIDEO, kTEXT, kLOCATION, kPICTURE]
+    
+    var messages: [JSQMessage] = []
+    var objectMessages: [NSDictionary] = []
+    var loadedMessages: [NSDictionary] = []
+    var allPictureMessages: [String] = []
+    
+    var initialLoadComplete = false
+    
     var outgoingBubble = JSQMessagesBubbleImageFactory()?.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
     var incommingBubble = JSQMessagesBubbleImageFactory()?.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     
@@ -108,11 +117,125 @@ extension ChatingViewController {
         optionMenu.addAction(shareLocation)
         optionMenu.addAction(cancelAction)
         
-        self.present(optionMenu, animated: true, completion: nil)
+//        self.present(optionMenu, animated: true, completion: nil)
+        
+        if (UI_USER_INTERFACE_IDIOM() == .pad) {
+            
+            if let currentPopoverPresentionController = optionMenu.popoverPresentationController {
+                
+                currentPopoverPresentionController.sourceView = self.inputToolbar.contentView.leftBarButtonItem
+                currentPopoverPresentionController.sourceRect = self.inputToolbar.contentView.leftBarButtonItem.bounds
+                
+                currentPopoverPresentionController.permittedArrowDirections = .up
+                self.present(optionMenu, animated: true, completion: nil)
+                
+            }
+            
+        } else {
+            
+            self.present(optionMenu, animated: true, completion: nil)
+            
+        }
+        
     }
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        print("send")
+        
+        if text != ""{
+            self.sendMessage(text: text, date: date, picture: nil, location: nil, video: nil, audio: nil)
+            updateSendButton(isSend: false)
+        } else {
+            updateSendButton(isSend: true)
+        }
+        
+    }
+    
+    // MARK: CustomSendButton
+    
+    override func textViewDidChange(_ textView: UITextView) {
+        
+        if textView.text != "" {
+            updateSendButton(isSend: true)
+        } else {
+            updateSendButton(isSend: false)
+        }
+        
+    }
+    
+    func updateSendButton(isSend: Bool) {
+        
+        if isSend {
+            self.inputToolbar.contentView.rightBarButtonItem.setImage(UIImage(named: "send"), for: .normal)
+        } else {
+            self.inputToolbar.contentView.rightBarButtonItem.setImage(UIImage(named: "mic"), for: .normal)
+        }
+        
+    }
+    
+    // MARK: Helper functions
+    
+    func removebadMessages(allMessages: [NSDictionary]) -> [NSDictionary] {
+        
+        var tempMessages = allMessages
+        
+        for message in tempMessages {
+            
+            if message[kTYPE] != nil {
+                if !self.legitTypes.contains(message[kTYPE] as! String) {
+                    // remove the message
+                    tempMessages.remove(at: tempMessages.firstIndex(of: message)!)
+                }
+            } else {
+                tempMessages.remove(at: tempMessages.firstIndex(of: message)!)
+            }
+        }
+        return tempMessages
+    }
+    
+}
+
+// MARK: Send/Load Messages
+
+extension ChatingViewController {
+    
+    func sendMessage(text: String?, date: Date, picture: UIImage?, location: String?, video: NSURL?, audio: String?) {
+        
+        var outgoingMessage: OutgoingMessage?
+        let currentUser = FUser.currentUser()!
+        
+        // text message
+        if let text = text {
+            outgoingMessage = OutgoingMessage(message: text, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kTEXT)
+        }
+        
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        self.finishSendingMessage()
+        
+        outgoingMessage!.sendMessage(chatRoomID: chatRoomId, messageDictionary: outgoingMessage!.messageDictionary, memberIds: memberIds, membersToPush: membersToPush)
+        
+    }
+    
+    func loadMessages() {
+        reference(.Message).document(FUser.currentId()).collection(chatRoomId).order(by: kDATE, descending: true).limit(to: 11).getDocuments { (snapshot, error) in
+            
+            guard let snapshot = snapshot else {
+                self.initialLoadComplete = true
+                return
+            }
+            
+            let sorted = (dictionaryFromSnapshots(snapshots: snapshot.documents) as NSArray).sortedArray(using: [NSSortDescriptor(key: kDATE, ascending: true)]) as! [NSDictionary]
+            
+            self.loadedMessages = self.removebadMessages(allMessages: sorted)
+            
+            self.initialLoadComplete = true
+            
+            // TODO: get picture messages
+            
+            // TODO: get old messages in background
+            
+            // Start listening for new chats
+            
+        }
     }
     
 }
