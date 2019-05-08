@@ -46,6 +46,36 @@ class ChatingViewController: JSQMessagesViewController {
     var outgoingBubble = JSQMessagesBubbleImageFactory()?.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
     var incommingBubble = JSQMessagesBubbleImageFactory()?.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     
+    let leftBarButtonView: UIView = {
+       
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
+        return view
+        
+    }()
+    
+    let avatarButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 10, width: 25, height: 25))
+        return button
+    }()
+    
+    let  titleLabel: UILabel = {
+        
+        let title = UILabel(frame: CGRect(x: 30, y: 10, width: 140, height: 15))
+        title.textAlignment = .left
+        title.font = UIFont(name: title.font.fontName, size: 14)
+        return title
+        
+    }()
+    
+    let subtitleLabel: UILabel = {
+        
+        let title = UILabel(frame: CGRect(x: 30, y: 25, width: 140, height: 15))
+        title.textAlignment = .left
+        title.font = UIFont(name: title.font.fontName, size: 14)
+        return title
+        
+    }()
+    
     
     //fix for Iphone x
 //    override func viewDidLayoutSubviews() {
@@ -84,6 +114,8 @@ class ChatingViewController: JSQMessagesViewController {
         
         self.inputToolbar.contentView.rightBarButtonItem.setImage(UIImage(named: "mic"), for: .normal)
         self.inputToolbar.contentView.rightBarButtonItem.setTitle("", for: .normal)
+        
+        setCustomTitle()
         
         loadMessages()
         
@@ -202,7 +234,29 @@ extension ChatingViewController {
 
 }
 
+// MARK: Actions
 
+extension ChatingViewController  {
+    
+    
+    @objc func infoButtonTapped() {
+        print("show image messages")
+    }
+    
+    @objc func showGroup() {
+        print("show group")
+    }
+    
+    @objc func showUserProfile() {
+        
+        let profileVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profileView") as! ProfileTableViewController
+        
+        profileVC.user = withUsers.first!
+        self.navigationController?.pushViewController(profileVC, animated: true)
+        
+    }
+    
+}
 
 
 // MARK: JSQMessage Delegate
@@ -385,6 +439,61 @@ extension ChatingViewController {
         
     }
     
+    func setCustomTitle() {
+        
+        leftBarButtonView.addSubview(avatarButton)
+        leftBarButtonView.addSubview(titleLabel)
+        leftBarButtonView.addSubview(subtitleLabel)
+        
+        let infoButton = UIBarButtonItem(image: UIImage(named: "info"), style: .plain, target: self, action: #selector(self.infoButtonTapped))
+        self.navigationItem.rightBarButtonItem = infoButton
+        
+        let leftBarButtonItem = UIBarButtonItem(customView: leftBarButtonView)
+        self.navigationItem.leftBarButtonItems?.append(leftBarButtonItem)
+        
+        if isGroup! {
+            avatarButton.addTarget(self, action: #selector(self.showGroup), for: .touchUpInside)
+        } else {
+            avatarButton.addTarget(self, action: #selector(self.showUserProfile), for: .touchUpInside)
+        }
+        
+        getUsersFromFirestore(withIds: memberIds) { (withUsers) in
+            
+            self.withUsers = withUsers
+            // get avatars
+            
+            if !self.isGroup! {
+                self.setUIForSingleChat()
+            }
+            
+        }
+        
+    }
+    
+    func setUIForSingleChat() {
+        
+        let withUser = withUsers.first!
+        
+        imageFromData(pictureData: withUser.avatar) { (image) in
+            
+            if image != nil {
+                avatarButton.setImage(image!.circleMasked, for: .normal)
+            }
+            
+        }
+        
+        titleLabel.text = withUser.fullname
+        
+        if withUser.isOnline {
+            subtitleLabel.text = "Online"
+        } else  {
+            subtitleLabel.text = "Offline"
+        }
+        
+        avatarButton.addTarget(self, action: #selector(self.showUserProfile), for: .touchUpInside)
+        
+    }
+    
 }
 
 // MARK: Send/Load Messages
@@ -472,7 +581,6 @@ extension ChatingViewController {
     }
     
     func getOldMessagesInBackground() {
-        
         if loadedMessages.count > 10 {
             
             let firstMessageDate = loadedMessages.first![kDATE] as! String
@@ -489,9 +597,7 @@ extension ChatingViewController {
                 self.minMessageNumber = self.maxMessageNumber - kNUMBEROFMESSAGES
                 
             }
-            
         }
-        
     }
     
     func loadMoreMessages(maxNumber: Int, minNumber: Int) {
@@ -503,7 +609,6 @@ extension ChatingViewController {
         
         if minMessageNumber < 0 {
             minMessageNumber = 0
-            
         }
         
         for i in (minMessageNumber...maxMessageNumber).reversed() {
