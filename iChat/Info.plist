@@ -41,5 +41,17 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSContactsUsageDescription</key>
+	<string>iChat needs to use your contacts</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>iChat needs to use your location</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>iChat needs to use your microphone</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>iChat needs to use your photo library</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>iChat needs to use your media library</string>
+	<key>NSCameraUsageDescription</key>
+	<string>iChat needs to use your camera</string>
 </dict>
 </plist>

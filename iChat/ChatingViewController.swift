@@ -265,12 +265,14 @@ extension ChatingViewController {
     
     override func didPressAccessoryButton(_ sender: UIButton!) {
         
+        let camera = Camera(delegate_: self)
+        
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let takePhotoOrVideo = UIAlertAction(title: "Camera", style: .default) { (action) in
             print("camera")
         }
         let sharePhoto = UIAlertAction(title: "Photo Library", style: .default) { (action) in
-            print("photo library")
+            camera.PresentPhotoLibrary(target: self, canEdit: false)
         }
         let shareVideo = UIAlertAction(title: "Video Library", style: .default) { (action) in
             print("video library")
@@ -510,6 +512,29 @@ extension ChatingViewController {
             outgoingMessage = OutgoingMessage(message: text, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kTEXT)
         }
         
+        // picture message
+        if let pic = picture {
+            
+            uploadImage(image: pic, chatRoomId: chatRoomId, view: self.navigationController!.view) { (imageLink) in
+                
+                if imageLink != nil {
+                    
+                    let text = kPICTURE
+                    outgoingMessage = OutgoingMessage(message: text, pictureLink: imageLink!, senderId: currentUser.objectId, senderName: currentUser.firstname, date: date, status: kDELIVERED, type: kPICTURE)
+                    
+                    JSQSystemSoundPlayer.jsq_playMessageSentSound()
+                    self.finishSendingMessage()
+                    
+                    outgoingMessage?.sendMessage(chatRoomID: self.chatRoomId, messageDictionary: outgoingMessage!.messageDictionary, memberIds: self.memberIds, membersToPush: self.membersToPush)
+                    
+                }
+                
+            }
+            
+            return 
+            
+        }
+        
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         self.finishSendingMessage()
         
@@ -632,6 +657,23 @@ extension ChatingViewController {
         
         objectMessages.insert(messageDict, at: 0)
         messages.insert(message!, at: 0)
+        
+    }
+    
+}
+
+// MARK: UIImagePickerController delegate
+
+extension ChatingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let video = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL
+        let picture = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        
+        sendMessage(text: nil, date: Date(), picture: picture, location: nil, video: video, audio: nil)
+        
+        picker.dismiss(animated: true, completion: nil)
         
     }
     
